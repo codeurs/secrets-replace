@@ -1,0 +1,13 @@
+name: 'Secrets replace'
+description: 'Replace values preceded by SECRET_ in the given file'
+author: Codeurs
+inputs:
+  file:
+    description: 'File with SECRET_-placeholders'
+    required: true
+  secrets:
+    description: 'Secrets object (JSON type)'
+    required: true
+  runs:
+    using: 'node12'
+    main: 'index.js'
