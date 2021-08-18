@@ -13,7 +13,6 @@ try {
 		for (let key in secrets) {
 			result = result.replace('SECRET_' + key, secrets[key])
 		}
-		result = result.replace('TEST_ACTION=', 'TEST_ACTION_CHANGED2=')
 		fs.writeFile(file, result, function (writeError) {
 			if (writeError) {
 				console.log('Error writing file: ' + writeError)
