@@ -2,7 +2,7 @@ const core = require('@actions/core')
 
 try {
 	const file = core.getInput('file')
-	const secrets = core.getInput('secrets')
+	const secrets = JSON.parse(core.getInput('secrets'))
 	const fs = require('fs')
 	fs.readFile(file, {encoding: 'utf8'}, function (readError, data) {
 		if (readError) {
@@ -15,7 +15,7 @@ try {
 			console.log(key)
 			result = result.replace('SECRET_' + key, secrets[key])
 		}
-		result = result.replace('TEST_ACTION=', 'TEST_ACTION_CHANGED=')
+		result = result.replace('TEST_ACTION=', 'TEST_ACTION_CHANGED2=')
 		fs.writeFile(file, result, function (writeError) {
 			if (writeError) {
 				console.log('Error writing file: ' + writeError)
