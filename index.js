@@ -10,9 +10,7 @@ try {
 			return
 		}
 		let result = data
-		console.log(secrets)
 		for (let key in secrets) {
-			console.log(key)
 			result = result.replace('SECRET_' + key, secrets[key])
 		}
 		result = result.replace('TEST_ACTION=', 'TEST_ACTION_CHANGED2=')
