@@ -6,8 +6,7 @@ try {
 	const fs = require('fs')
 	fs.readFile(file, {encoding: 'utf8'}, function (readError, data) {
 		if (readError) {
-			console.log('Error reading file: ' + readError)
-			return
+			throw new Error('Error reading file: ' + readError)
 		}
 		let result = data
 		for (let key in secrets) {
