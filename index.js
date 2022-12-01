@@ -10,7 +10,9 @@ try {
 		}
 		let result = data
 		for (let key in secrets) {
-			result = result.replace('SECRET_' + key, secrets[key])
+			if (secrets[key] === 'SECRET_' + key) continue
+			while (result.indexOf('SECRET_' + key) >= 0)
+				result = result.replace('SECRET_' + key, secrets[key])
 		}
 		fs.writeFile(file, result, function (writeError) {
 			if (writeError) {
