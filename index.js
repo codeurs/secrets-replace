@@ -14,6 +14,13 @@ try {
 			while (result.indexOf('SECRET_' + key) >= 0)
 				result = result.replace('SECRET_' + key, secrets[key])
 		}
+		const matches = result.matchAll(/=SECRET_.+?\b/g)
+		const warnings = []
+		for (m of matches) {
+			if (warnings.indexOf(m[0]) >= 0) continue
+			warnings.push(m[0])
+			console.warn("Warning: Key not found. "+ m[0].substr(1))
+		}
 		fs.writeFile(file, result, function (writeError) {
 			if (writeError) {
 				console.log('Error writing file: ' + writeError)
