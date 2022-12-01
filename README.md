@@ -16,8 +16,8 @@ This action replaces values preceded by SECRET\_ in a given file. This is useful
 
 ```yaml
 - name: Replace secrets in .env
-  uses: codeurs/secrets-replace
+  uses: codeurs/secrets-replace@v2
   with:
-    file: 'path1/to/.env'
+    file: "path1/to/.env"
     secrets: ${{ toJson(secrets) }}
 ```
