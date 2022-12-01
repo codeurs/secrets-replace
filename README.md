@@ -18,6 +18,6 @@ This action replaces values preceded by SECRET\_ in a given file. This is useful
 - name: Replace secrets in .env
   uses: codeurs/secrets-replace@v2
   with:
-    file: "path1/to/.env"
+    file: "path/to/.env"
     secrets: ${{ toJson(secrets) }}
 ```
