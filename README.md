@@ -30,7 +30,7 @@ SAMPLE_KEY=SECRET_SAMPLE_KEY
 
 ```yaml
 - name: Replace secrets in .env
-  uses: codeurs/secrets-replace@v3
+  uses: codeurs/secrets-replace@v4
   with:
     file: "path/to/.env"
     secrets: ${{ toJson(secrets) }}
