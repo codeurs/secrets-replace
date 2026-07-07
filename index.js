@@ -9,10 +9,18 @@ try {
 			throw new Error('Error reading file: ' + readError)
 		}
 		let result = data
+		let sortedKeys = []
 		for (let key in secrets) {
 			if (secrets[key] === 'SECRET_' + key) continue
-			while (result.indexOf('SECRET_' + key) >= 0)
-				result = result.replace('SECRET_' + key, secrets[key])
+			sortedKeys.push(key)
+		}
+		sortedKeys.sort(function(a,b) {
+			if (a.length > b.length) return -1
+			return b.length > a.length
+		})
+		for (let key of sortedKeys) {
+			while (result.indexOf('=SECRET_' + key) >= 0)
+				result = result.replace('=SECRET_' + key, '=' + secrets[key])
 		}
 		const matches = result.matchAll(/=SECRET_.+?\b/g)
 		const warnings = []

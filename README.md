@@ -13,6 +13,7 @@ This action replaces values preceded by SECRET\_ in a given file. This is useful
 DB_PWD=SECRET_DB_PASSWORD
 SAMPLE_KEY=SECRET_SAMPLE_KEY
 ```
+Avoid names that are an extention of another name. E.g.: `SECRET_BASE` and `SECRET_BASE_EXT`
 
 ### `secrets`
 
