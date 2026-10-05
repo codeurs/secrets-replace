@@ -31,7 +31,7 @@ Avoid names that are an extention of another name. E.g.: `SECRET_BASE` and `SECR
 
 ```yaml
 - name: Replace secrets in .env
-  uses: codeurs/secrets-replace@v4
+  uses: codeurs/secrets-replace@v6
   with:
     file: "path/to/.env"
     secrets: ${{ toJson(secrets) }}

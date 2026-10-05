@@ -19,8 +19,8 @@ try {
 			return b.length > a.length
 		})
 		for (let key of sortedKeys) {
-			while (result.indexOf('=SECRET_' + key) >= 0)
-				result = result.replace('=SECRET_' + key, '=' + secrets[key])
+			const reg = new RegExp(String.raw`=SECRET_${key}\b`, 'gim')
+        	result = result.replace(reg, '=' + secrets[key])
 		}
 		const matches = result.matchAll(/=SECRET_.+?\b/g)
 		const warnings = []
