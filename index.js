@@ -19,15 +19,15 @@ try {
 			return b.length > a.length
 		})
 		for (let key of sortedKeys) {
-			const reg = new RegExp(String.raw`=SECRET_${key}\b`, 'gim')
-        	result = result.replace(reg, '=' + secrets[key])
+			const reg = new RegExp(String.raw`=(['"]?)SECRET_${key}(['"]?)\b`, 'gim')
+        	result = result.replace(reg, `=$1${secrets[key]}$2`)
 		}
-		const matches = result.matchAll(/=SECRET_.+?\b/g)
+		const matches = result.matchAll(/=['"]?SECRET_.+?['"]?\b/g)
 		const warnings = []
-		for (m of matches) {
+		for (const m of matches) {
 			if (warnings.indexOf(m[0]) >= 0) continue
 			warnings.push(m[0])
-			console.warn("Warning: Key not found. "+ m[0].substr(1))
+			console.warn("Warning: Key not found. "+ m[0].substring(1))
 		}
 		fs.writeFile(file, result, function (writeError) {
 			if (writeError) {
